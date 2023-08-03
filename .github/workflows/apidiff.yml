@@ -1,0 +1,26 @@
+name: Comment PRs with API diff comment
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - name: Install python dependencies
+        run: "pip install -r requirements.txt"
+      - name: Generate openapi files
+        run: "python3 apicontract.py"
+      - name: Diff API documentation
+        uses: bump-sh/github-action@v1
+        with:
+          doc: ${{secrets.BUMP_DOC_SLUG}}
+          token: ${{secrets.BUMP_DOC_TOKEN}}
+          file: openapi.yaml
+          command: diff
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
