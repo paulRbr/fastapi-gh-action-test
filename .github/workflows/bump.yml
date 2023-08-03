@@ -13,7 +13,7 @@ jobs:
       - name: "install python dependencies"
         run: "pip install -r requirements.txt"
       - name: "generate openapi files"
-        run: "python3 apicontract.py main:app"
+        run: "python3 apicontract.py"
       - name: "Send Openapi definition to Bump.sh"
         uses: bump-sh/github-action@v1
         with:
