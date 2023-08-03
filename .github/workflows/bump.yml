@@ -18,4 +18,5 @@ jobs:
         uses: bump-sh/github-action@v1
         with:
           file: openapi.yaml
-          command: "preview"
+          doc: ${{secrets.BUMP_DOC_SLUG}}
+          token: ${{secrets.BUMP_DOC_TOKEN}}
