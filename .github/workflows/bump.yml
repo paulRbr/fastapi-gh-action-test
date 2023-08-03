@@ -1,7 +1,8 @@
 name: "Deploy your FastAPI documentation on Bump.sh"
 
 on:
-  push: "main"
+  push:
+    branches: ["main"]
 
 jobs:
   deploy:
